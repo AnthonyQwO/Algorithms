@@ -1,3 +1,3 @@
 # Algorithms
 
-[](./Screenshot/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-10-03%20at%2000.45.37.png)
+<img src="./Screenshot/Simulator Screen Recording - iPhone 16 Pro - 2024-10-03 at 00.44.28.gif" alt="Simulator Screenshot" width="50%">
