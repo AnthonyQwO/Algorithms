@@ -1,0 +1,24 @@
+[
+    {
+        "name": "Hash",
+        "introduction": "哈希算法在解決許多問題上非常有幫助。\n\n我們想要有效地解決比較字符串的問題。暴力的解決方法只是比較兩個字符串的字母，如果 x 和 y 是兩個字符串的大小，這樣的做法的時間複雜度是 O(min(x, y))。我們希望能做得更好。字符串哈希的基本思想如下：我們將每個字符串映射為一個整數，然後比較這些整數，而不是字符串。這樣可以將字符串比較的執行時間減少到 O(1)。\n\n為了進行轉換，我們需要一個所謂的哈希函數。它的目標是將字符串轉換為整數，即字符串的哈希值。必須滿足以下條件：如果兩個字符串 s 和 t 相等（s = t），那麼它們的哈希值也必須相等（hash(s) = hash(t)）。否則，我們將無法比較字符串。\n\n請注意，反向條件不必成立。如果哈希值相等（hash(s) = hash(t)），那麼這兩個字符串不一定要相等。例如，一個有效的哈希函數可以是對每個 s 都是 hash(s) = 0。這只是個愚蠢的例子，因為這個函數將完全無用，但它仍然是一個有效的哈希函數。反向條件不必成立的原因是，存在指數量級的字符串。如果我們只希望這個哈希函數能夠區分所有由小寫字符組成且長度小於 15 的字符串，那麼哈希值就無法再適合 64 位整數（例如無符號長整數）了，因為有太多這樣的字符串。當然，我們也不想比較任意長的整數，因為這樣的比較時間複雜度仍然是 O(n)。\n\n所以通常我們希望哈希函數將字符串映射到固定範圍的數字 [0, m)，這樣比較字符串就只是比較兩個固定長度的整數。而且，當 s ≠ t 時，我們希望 hash(s) ≠ hash(t) 是非常可能的。\n\n這是你必須記住的重要部分。使用哈希不會 100% 確定正確，因為兩個完全不同的字符串可能具有相同的哈希值（哈希碰撞）。然而，在絕大多數任務中，這可以安全忽略，因為兩個不同字符串的哈希碰撞的概率仍然非常小。在本文中，我們將討論一些技術，以保持碰撞的概率非常低。",
+        "code": "// 1-base\n// H[R] - H[L-1] * p^(R-L+1)\n// cmp的+modl是為了防止負數\nconst int p = 75577, modl = 1e9 + 7;\nvector<int> build(const string& s) {\n    vector<int> ret(1, 0);\n    for(int i = 1; i <= s.size(); i++)\n        ret.push_back((ret.back() * p % modl + s[i - 1]) % modl);\n    return ret;\n}\nint qpow(int n, int k) {\n    int ret = 1;\n    for(; k; k >>= 1, n = n * n % modl) if(k & 1) ret = ret * n % modl;\n    return ret;\n}\nbool cmp(const vector<int>& h, int i, int len, int Hash) {\n    return (h[i + len - 1] - h[i - 1] * qpow(p, len) % modl + modl) % modl == Hash;\n}",
+        "bio": "String Hashing 是一種將字串轉換為數字的技術。",
+        "icon": "number.square",
+        "timeComplexity": "O(n)",
+        "spaceComplexity": "O(n)",
+        "images": [],
+        "isSort": "false"
+    },
+    {
+        "name": "KMP",
+        "introduction": "KMP演算法可在一個字串S內尋找一個字W的出現位置。一個詞在不匹配時本身就包含足夠的資訊來確定下一個匹配可能的開始位置，此演算法利用這一特性以避免重新檢查先前配對的字元。",
+        "code": "/* len-failure[k]:\n在k結尾的情況下，這個子字串可以由開頭\n長度為(len-failure[k])的部分重複出現來表達\n\nfailure[k]為次長相同前綴後綴\n如果我們不只想求最多，而且以0-base做為考量\n，那可能的長度由大到小會是\nfailuer[k]、failure[failuer[k]-1]\n、failure[failure[failuer[k]-1]-1]..\n直到有值為0為止 */\nint failure[MXN];\nvector<int> KMP(string& t, string& p) {\n    vector<int> ret;\n    if(p.size() > t.size()) return ret;\n    for(int i = 1, j = failure[0] = -1; i < p.size(); i++) {\n        while(j >= 0 && p[j + 1] != p[i]) j = failure[j];\n        if(p[j + 1] == p[i]) j++;\n        failure[i] = j;\n    }\n    for(int i = 0, j = -1; i < t.size(); i++) {\n        while (j >= 0 && p[j + 1] != t[i]) j = failure[j];\n        if(p[j + 1] == t[i]) j++;\n        if(j == p.size() - 1) {\n            ret.push_back(i - p.size() + 1);\n            j = failure[j];\n        }   \n    }   \n    return ret;\n}",
+        "bio": "KMP演算法可在一個字串S內尋找一個字W的出現位置",
+        "icon": "book.pages",
+        "timeComplexity": "O(n)",
+        "spaceComplexity": "O(n)",
+        "images": ["KMP0"],
+        "isSort": "false"
+    }
+]

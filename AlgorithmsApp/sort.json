@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Merge Sort",
+        "introduction": "Merge Sort 是一種有效率的排序算法，使用分治法將列表分成兩部分，遞迴地對每部分進行排序，然後合併兩個已排序的部分。",
+        "code": "void merge(vector<int> &arr, int l, int m, int r) { // [l, r)\n    vector<int> temp(arr.begin() + l, arr.begin() + r);\n    reverse(temp.begin() + m - l, temp.begin() + r - l);\n    for( int i = l, j = r - 1, k = l ; k < r; k++) {\n        if(temp[i - l] < temp[j - l])\n            arr[k] = temp[i++  - l];\n        else\n            arr[k]=temp[j-- - l];\n    }\n}\n\nvoid mergeSort(vector<int> &arr, int l, int r) { // [l, r)\n    if(r - l >= 2) {\n        int m = (l + r) / 2;\n        mergeSort(arr, l, m);\n        mergeSort(arr, m, r);\n        merge(arr, l, m, r);\n    }\n}",
+        "bio": "Merge Sort 透過將列表分成較小的部分進行排序並合併，達到高效排序。",
+        "icon": "square.stack.3d.up.fill",
+        "timeComplexity": "O(n log n)",
+        "spaceComplexity": "O(n)",
+        "images": [],
+        "isSort": "mergeSort"
+    },
+    {
+        "name": "Bubble Sort",
+        "introduction": "Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.",
+        "code": "for (int i = 0; i < n - 1; i++)\n    for (int j = 0; j < n - i - 1; j++)\n        if (arr[j] > arr[j + 1])\n            swap(arr[j], arr[j + 1]);",
+        "bio": "Bubble Sort is used to sort a list by repeatedly swapping adjacent elements.",
+        "icon": "bubbles.and.sparkles",
+        "timeComplexity": "O(n²)",
+        "spaceComplexity": "O(1)",
+        "images": [],
+        "isSort": "bubbleSort"
+    },
+    {
+        "name": "Insertion Sort",
+        "introduction": "Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort.",
+        "code": "for (int i = 1; i < n; i++) {\n    int key = arr[i];\n    int j = i - 1;\n    while (j >= 0 && arr[j] > key) {\n        arr[j + 1] = arr[j];\n        j = j - 1;\n    }\n    arr[j + 1] = key;\n}",
+        "bio": "Insertion Sort sorts a list by repeatedly taking the next element and inserting it into the sorted part of the list.",
+        "icon": "rectangle.stack.fill",
+        "timeComplexity": "O(n²)",
+        "spaceComplexity": "O(1)",
+        "images": [],
+        "isSort": "insertionSort"
+    },
+    {
+        "name": "Selection Sort",
+        "introduction": "Selection Sort is a sorting algorithm that repeatedly selects the minimum element from the unsorted part and moves it to the sorted part.",
+        "code": "for (int i = 0; i < n - 1; i++) {\n    int minIdx = i;\n    for (int j = i + 1; j < n; j++)\n        if (arr[j] < arr[minIdx])\n            minIdx = j;\n    swap(arr[minIdx], arr[i]);\n}",
+        "bio": "Selection Sort sorts a list by repeatedly finding the minimum element from the unsorted part and moving it to the sorted part.",
+        "icon": "checkmark.circle.fill",
+        "timeComplexity": "O(n²)",
+        "spaceComplexity": "O(1)",
+        "images": [],
+        "isSort": "selectionSort"
+    },
+    {
+        "name": "Quick Sort",
+        "introduction": "Quick Sort is an efficient, in-place sorting algorithm that uses a divide-and-conquer approach to partition the list into two parts, then recursively sorts the parts.",
+        "code": "int partition(int arr[], int low, int high) {\n    int pivot = arr[high];\n    int i = (low - 1);\n    for (int j = low; j < high; j++) {\n        if (arr[j] < pivot) {\n            i++;\n            swap(&arr[i], &arr[j]);\n        }\n    }\n    swap(&arr[i + 1], &arr[high]);\n    return (i + 1);\n}\nvoid quickSort(int arr[], int low, int high) {\n    if (low < high) {\n        int pi = partition(arr, low, high);\n        quickSort(arr, low, pi - 1);\n        quickSort(arr, pi + 1, high);\n    }\n}",
+        "bio": "Quick Sort is a highly efficient sorting algorithm, especially for large datasets, that uses partitioning to organize the list into two sections around a pivot element.",
+        "icon": "hare.fill",
+        "timeComplexity": "O(n log n)",
+        "spaceComplexity": "O(log n)",
+        "images": [],
+        "isSort": "quickSort"
+    }
+]
+

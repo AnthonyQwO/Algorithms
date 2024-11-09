@@ -1,0 +1,25 @@
+[
+    {
+        "name": "BIT",
+        "introduction": "二進位索引樹（Binary Indexed Tree, BIT），也稱為Fenwick Tree，是一種有效的資料結構，用於解決區間查詢和更新問題。它特別適用於處理一維數組的前綴和計算，能夠在對數時間內完成更新和查詢操作。",
+        "code": "#define lowbit(x) (x&-x)\nstruct BIT {\n    int n;\n    vector<int> bit;\n    BIT(int _n):n(_n), bit(n + 1) {}\n    void update(int x, int val) {\n        for(; x <= n; x += lowbit(x)) bit[x] += val;\n    }\n    void update(int L, int R, int val) {\n        update(L, val), update(R + 1, -val);\n    }\n    int query(int x) {\n        int res = 0;\n        for(; x; x -= lowbit(x)) res += bit[x];\n        return res;\n    }\n    int query(int L, int R) {\n        return query(R) - query(L - 1);\n    }\n};",
+        "bio": "BIT特別適用於處理一維數組的前綴和計算，能夠在對數時間內完成更新和查詢操作",
+        "icon": "tray.2",
+        "timeComplexity": "O(log n)",
+        "spaceComplexity": "O(n)",
+        "images": ["bit0", "bit1"],
+        "isSort": "false"
+    },
+    {
+        "name": "DSU",
+        "introduction": "在電腦科學中，併查集是一種資料結構，用於處理一些不交集的合併及查詢問題。併查集支援如下操作： 查詢：查詢某個元素屬於哪個集合，通常是返回集合內的一個「代表元素」。這個操作是為了判斷兩個元素是否在同一個集合之中。 合併：將兩個集合合併為一個。",
+        "code": "struct DSU { // 並查集\n    vector<int> fa, sz;\n    DSU(int n = 0) : fa(n), sz(n, 1) {\n        iota(fa.begin(), fa.end(), 0);\n    }\n    int Find(int x) { // 路徑壓縮\n        while (x != fa[x])\n            x = fa[x] = fa[fa[x]];\n        return x;\n    }\n    bool Merge(int x, int y) { //合併\n        x = Find(x), y = Find(y);\n        if (x == y) return false; // 是否為連通\n        if (sz[x] > sz[y]) swap(x, y);\n        fa[x] = y;\n        sz[y] += sz[x];\n        return true;\n    }\n};",
+        "bio": "併查集是一種資料結構，用於處理一些不交集的合併及查詢問題",
+        "icon": "personalhotspot",
+        "timeComplexity": "O(1)",
+        "spaceComplexity": "O(n)",
+        "images": [],
+        "isSort": "false"
+    }
+]
+

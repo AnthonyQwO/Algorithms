@@ -1,0 +1,13 @@
+[
+    {
+        "name": "Floryd Warshall",
+        "introduction": "Floyd-Warshall演算法，中文亦稱弗洛伊德演算法或佛洛依德演算法，是解決任意兩點間的最短路徑的一種演算法，可以正確處理有向圖或負權的最短路徑問題，同時也被用於計算有向圖的遞移閉包。",
+        "code": "for( int k=0 ; k < n ; k++ )\n    for( int i=0 ; i < n ; i++ )\n        for( int j=0 ; j < n ; j++ )\n            if( dis[i][j] > dis[i][k]+dis[k][j] && dis[i][k] < INF && dis[k][j] < INF )\n                dis[i][j]=dis[i][k]+dis[k][j];",
+        "bio": "解決任意兩點間的最短路徑的一種演算法",
+        "icon": "map",
+        "timeComplexity": "O(n³)",
+        "spaceComplexity": "O(n²)",
+        "images": ["floydwarshall0"],
+        "isSort": "false"
+    }
+]
