@@ -24,6 +24,6 @@
 
 <img src="./Screenshot/Simulator Screenshot - iPhone 16 Pro - 2024-11-08 at 23.34.36.png" alt="Simulator Screenshot" width="50%">
 
-可以自定義排序動畫的資料大小
+- 可以自定義排序動畫的資料大小
 
 <img src="./Screenshot/Simulator Screenshot - iPhone 16 Pro - 2024-11-08 at 23.35.03.png" alt="Simulator Screenshot" width="50%">
