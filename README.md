@@ -27,3 +27,8 @@
 - 可以自定義排序動畫的資料大小
 
 <img src="./Screenshot/Simulator Screenshot - iPhone 16 Pro - 2024-11-08 at 23.35.03.png" alt="Simulator Screenshot" width="50%">
+
+## Link
+- [medium](https://medium.com/海大-ios-app-程式設計/ios應用程式開發入門-02-使用-swiftui-製作結合酷炫動畫效果的電子書-app-3e7535251416)
+
+- [youtube](https://youtu.be/bgfz7WQ-1FQ?si=H65UyqgUb43DYf9u)
